@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurelia Jewels | Premium Luxury E-Commerce</title>
+  <meta name="description"
+    content="Discover premium gold, diamond, platinum, and silver jewelry crafted to perfection. Experience world-class luxury at Aurelia Jewels.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Complimentary Insured Worldwide Delivery & Signature Packaging on Orders Over $500</p>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header" id="main-header">
+    <div class="header-container">
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <!-- Left: Navigation Links (Desktop) -->
+      <nav class="nav-links desktop-only">
+        <a href="#home" class="nav-link active">Home</a>
+        <div class="nav-dropdown">
+          <a href="#shop" class="nav-link dropdown-trigger">Shop <i data-lucide="chevron-down"
+              class="nav-chevron"></i></a>
+          <!-- Mega Menu for Shop -->
+          <div class="mega-menu">
+            <div class="mega-menu-grid">
+              <div class="mega-column">
+                <h4>By Category</h4>
+                <a href="#shop?category=rings">Rings</a>
+                <a href="#shop?category=necklaces">Necklaces & Pendants</a>
+                <a href="#shop?category=earrings">Earrings</a>
+                <a href="#shop?category=bracelets">Bracelets</a>
+                <a href="#shop?category=bridal">Bridal Sets</a>
+              </div>
+              <div class="mega-column">
+                <h4>By Metal</h4>
+                <a href="#shop?metal=gold">Yellow Gold</a>
+                <a href="#shop?metal=rosegold">Rose Gold</a>
+                <a href="#shop?metal=platinum">Platinum</a>
+                <a href="#shop?metal=silver">Fine Silver</a>
+              </div>
+              <div class="mega-column">
+                <h4>By Gemstone</h4>
+                <a href="#shop?gem=diamond">Diamonds</a>
+                <a href="#shop?gem=emerald">Emeralds</a>
+                <a href="#shop?gem=sapphire">Sapphires</a>
+                <a href="#shop?gem=pearl">Pearls</a>
+              </div>
+              <div class="mega-column featured-mega">
+                <div class="mega-featured-img">
+                  <div class="mega-featured-overlay">
+                    <span class="mega-tag">Exclusive</span>
+                    <h5>The Elysian Bridal Suite</h5>
+                    <a href="#collections?id=elysian" class="mega-link">Explore Collection</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#collections" class="nav-link dropdown-trigger">Collections <i data-lucide="chevron-down"
+              class="nav-chevron"></i></a>
+          <div class="mega-menu collection-mega">
+            <div class="mega-menu-grid">
+              <div class="mega-column">
+                <h4>Signature Collections</h4>
+                <a href="#shop?collection=elysian">Elysian Bridal</a>
+                <a href="#shop?collection=aurora">Aura of Diamonds</a>
+                <a href="#shop?collection=vintage">Vintage Gold</a>
+                <a href="#shop?collection=celestial">Celestial Silver</a>
+              </div>
+              <div class="mega-column">
+                <h4>Curated Edits</h4>
+                <a href="#shop?tag=new-arrivals">New Arrivals</a>
+                <a href="#shop?tag=best-sellers">Best Sellers</a>
+                <a href="#shop?tag=gift-ideas">Gifts for Her</a>
+                <a href="#shop?tag=wedding-anniversary">Wedding & Anniversary</a>
+              </div>
+              <div class="mega-column mega-about-column">
+                <h4>Our Heritage</h4>
+                <p>Meticulously hand-crafted creations celebrating love, elegance, and timeless beauty.</p>
+                <a href="#about" class="text-link">Our Craftsmanship &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#blog" class="nav-link">Blog & Guides</a>
+      </nav>
+
+      <!-- Center: Logo -->
+      <div class="header-logo">
+        <a href="#home" class="logo-text">AURELIA JEWELS</a>
+      </div>
+
+      <!-- Right: Action Icons -->
+      <div class="header-actions">
+        <button class="action-btn" id="search-trigger" aria-label="Search Catalog">
+          <i data-lucide="search"></i>
+        </button>
+        <a href="#login" class="action-btn desktop-only" id="account-btn" aria-label="User Account">
+          <i data-lucide="user"></i>
+        </a>
+        <a href="#wishlist" class="action-btn wishlist-icon" aria-label="Wishlist">
+          <i data-lucide="heart"></i>
+          <span class="badge" id="wishlist-badge">0</span>
+        </a>
+        <a href="#cart" class="action-btn cart-icon" aria-label="Shopping Cart">
+          <i data-lucide="shopping-bag"></i>
+          <span class="badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="mobile-nav-header">
+        <span class="logo-text">AURELIA</span>
+        <button class="close-mobile-nav" id="close-mobile-nav" aria-label="Close Menu">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="#home" class="mobile-link">Home</a>
+
+        <div class="mobile-collapse">
+          <button class="mobile-collapse-trigger">Shop Categories <i data-lucide="plus"></i></button>
+          <div class="mobile-collapse-content">
+            <a href="#shop?category=rings">Rings</a>
+            <a href="#shop?category=necklaces">Necklaces & Pendants</a>
+            <a href="#shop?category=earrings">Earrings</a>
+            <a href="#shop?category=bracelets">Bracelets</a>
+            <a href="#shop?category=bridal">Bridal Collection</a>
+          </div>
+        </div>
+
+        <div class="mobile-collapse">
+          <button class="mobile-collapse-trigger">Collections <i data-lucide="plus"></i></button>
+          <div class="mobile-collapse-content">
+            <a href="#shop?collection=elysian">Elysian Bridal</a>
+            <a href="#shop?collection=aurora">Aura of Diamonds</a>
+            <a href="#shop?collection=vintage">Vintage Gold</a>
+            <a href="#shop?collection=celestial">Celestial Silver</a>
+          </div>
+        </div>
+
+        <a href="#about" class="mobile-link">About Us</a>
+        <a href="#blog" class="mobile-link">Blog & Guides</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+        <a href="#faq" class="mobile-link">FAQ & Support</a>
+        <a href="#login" class="mobile-link" id="mobile-account-link">My Account</a>
+      </div>
+    </div>
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+  </header>
+
+  <!-- Global Full-Screen Search Overlay -->
+  <div class="search-overlay-container" id="search-overlay">
+    <button class="search-close-btn" id="search-close" aria-label="Close Search">
+      <i data-lucide="x"></i>
+    </button>
+    <div class="search-inner">
+      <h2>Search Aurelia Jewels</h2>
+      <div class="search-input-wrapper">
+        <input type="text" id="search-input" placeholder="Search for diamond rings, gold necklaces, celestial bands..."
+          autofocus autocomplete="off">
+        <i data-lucide="search" class="search-icon-inside"></i>
+      </div>
+      <div class="search-suggestions" id="search-suggestions">
+        <p class="suggestions-title">Trending Searches</p>
+        <div class="suggestions-tags">
+          <span class="suggestion-tag" data-query="Ring">Solitaire Rings</span>
+          <span class="suggestion-tag" data-query="Eternity">Eternity Bands</span>
+          <span class="suggestion-tag" data-query="Rose Gold">Rose Gold Earrings</span>
+          <span class="suggestion-tag" data-query="Emerald">Emerald Necklaces</span>
+        </div>
+      </div>
+      <div class="search-results-grid" id="search-results-grid">
+        <!-- Javascript dynamically renders search matches here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Content Container -->
+  <main id="app-container" class="app-container">
+    <!-- Rendered dynamically by app.js -->
+    <div class="page-loader">
+      <div class="spinner"></div>
+      <p>Entering the world of Aurelia...</p>
+    </div>
+  </main>
+
+  <!-- Quick-View Modal -->
+  <div class="modal-backdrop" id="quick-view-backdrop">
+    <div class="quick-view-modal">
+      <button class="modal-close" id="quick-view-close" aria-label="Close Modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="quick-view-grid" id="quick-view-content">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Zoom Modal -->
+  <div class="modal-backdrop" id="zoom-backdrop">
+    <div class="zoom-modal">
+      <button class="modal-close" id="zoom-close" aria-label="Close Zoom">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="zoom-img-container">
+        <img id="zoom-img" src="" alt="High resolution zoom view">
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scroll-to-Top Button -->
+  <button class="back-to-top-btn" id="back-to-top" aria-label="Back to Top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-top">
+      <div class="footer-container">
+        <div class="footer-grid">
+
+          <!-- Column 1: Brand Info -->
+          <div class="footer-col brand-col">
+            <span class="footer-logo">AURELIA JEWELS</span>
+            <p class="brand-desc">A legacy of crafting timeless, bespoke fine jewelry. Inspired by classical heritage
+              and perfected by modern artisanal engineering.</p>
+            <div class="social-links">
+              <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+              <a href="#" aria-label="Pinterest"><i data-lucide="pin"></i></a>
+              <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+              <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+            </div>
+          </div>
+
+          <!-- Column 2: Customer Service -->
+          <div class="footer-col">
+            <h3>Customer Care</h3>
+            <ul>
+              <li><a href="#faq">FAQ & Help Center</a></li>
+              <li><a href="#order-tracking">Track Your Order</a></li>
+              <li><a href="#shipping-policy">Shipping & Delivery</a></li>
+              <li><a href="#return-policy">Returns & Exchange</a></li>
+              <li><a href="#contact">Schedule an Appointment</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Quick Links & Company -->
+          <div class="footer-col">
+            <h3>Our Brand</h3>
+            <ul>
+              <li><a href="#about">Our Story</a></li>
+              <li><a href="#collections">Signature Collections</a></li>
+              <li><a href="#blog">Care & Buying Guides</a></li>
+              <li><a href="#about">The Craftsmanship</a></li>
+              <li><a href="#contact">Bespoke Design Services</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Newsletter -->
+          <div class="footer-col newsletter-col">
+            <h3>The Aurelia Circle</h3>
+            <p>Subscribe to receive priority access to new collections, exclusive vault releases, and private events
+              invitation.</p>
+            <form class="footer-newsletter-form" id="newsletter-form">
+              <div class="newsletter-input-wrapper">
+                <input type="email" placeholder="Your Email Address" required aria-label="Email address for newsletter">
+                <button type="submit" class="newsletter-submit-btn" aria-label="Subscribe">
+                  <i data-lucide="arrow-right"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom: Legals & Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-container">
+        <div class="footer-bottom-flex">
+          <p class="copyright">&copy; 2026 Aurelia Jewels. All rights reserved.</p>
+          <div class="footer-policies">
+            <a href="#privacy-policy">Privacy Policy</a>
+            <a href="#terms-conditions">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="app.js?v=2" defer></script>
+</body>
+
+</html>

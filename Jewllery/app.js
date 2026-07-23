@@ -1090,16 +1090,6 @@ function renderProductDetails(params) {
             `).join('')}
           </div>
           
-          <!-- 360 Interactive Viewer Component -->
-          <div class="viewer-360-container" id="viewer-360-element">
-            <div class="viewer-360-inner" id="viewer-360-inner">
-              <img src="${product.images[0]}" alt="${product.name}" id="viewer-360-img" draggable="false">
-            </div>
-            <div class="viewer-360-badge"><i data-lucide="rotate-3d" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"></i> 360° View</div>
-            <div class="viewer-360-instructions">
-              <i data-lucide="move-horizontal" style="width:16px; height:16px; display:inline-block; vertical-align:middle; margin-right:4px;"></i>
-              <span>Drag horizontally to rotate</span>
-            </div>
           </div>
         </div>
 
@@ -1273,71 +1263,7 @@ function renderProductDetails(params) {
     }
   });
 
-  // 360 Drag Interaction Logic
-  const viewerElement = document.getElementById("viewer-360-element");
-  const viewerInner = document.getElementById("viewer-360-inner");
-  const viewerImg = document.getElementById("viewer-360-img");
-  
-  if (viewerElement && viewerInner && viewerImg) {
-    let isDragging = false;
-    let startX = 0;
-    let currentAngle = 0;
-    let baseAngle = 0;
-    const imagesList = product.images;
 
-    // Prevent default browser image dragging ghost effect
-    viewerImg.addEventListener("dragstart", (e) => e.preventDefault());
-
-    const startDrag = (e) => {
-      isDragging = true;
-      startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-      baseAngle = currentAngle;
-      viewerElement.style.cursor = "grabbing";
-    };
-
-    const moveDrag = (e) => {
-      if (!isDragging) return;
-      
-      // Prevent browser scroll behaviors during drag
-      if (e.cancelable) e.preventDefault();
-      
-      const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-      const dx = clientX - startX;
-      
-      // Calculate rotation angle (0.6 degree per pixel)
-      currentAngle = baseAngle + dx * 0.6;
-      viewerInner.style.transform = `perspective(1000px) rotateY(${currentAngle}deg)`;
-      
-      // Swap images based on rotation to simulate front/back view
-      if (imagesList.length > 1) {
-        // Normalize angle to 0-359
-        const normAngle = ((Math.round(currentAngle) % 360) + 360) % 360;
-        if (normAngle > 90 && normAngle < 270) {
-          viewerImg.src = imagesList[1];
-        } else {
-          viewerImg.src = imagesList[0];
-        }
-      }
-    };
-
-    const stopDrag = () => {
-      isDragging = false;
-      viewerElement.style.cursor = "grab";
-    };
-
-    // Attach mouse events
-    viewerElement.addEventListener("mousedown", startDrag);
-    window.addEventListener("mousemove", moveDrag, { passive: false });
-    window.addEventListener("mouseup", stopDrag);
-
-    // Attach touch events for mobile
-    viewerElement.addEventListener("touchstart", startDrag, { passive: true });
-    window.addEventListener("touchmove", moveDrag, { passive: false });
-    window.addEventListener("touchend", stopDrag);
-    
-    // Set initial cursor
-    viewerElement.style.cursor = "grab";
-  }
 
   // Metal selection bindings
   let selectedMetal = "gold";

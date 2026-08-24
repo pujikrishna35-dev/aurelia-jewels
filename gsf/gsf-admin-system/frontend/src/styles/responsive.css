@@ -1,0 +1,187 @@
+/* Media Queries for Full Responsiveness */
+
+/* Laptop & Small Desktop (<= 1200px) */
+@media (max-width: 1200px) {
+  .hero-grid {
+    grid-template-columns: 50% 50%;
+    gap: 24px;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .categories-grid,
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footer-top-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+}
+
+/* Tablet (<= 992px) */
+@media (max-width: 992px) {
+  .navbar-menu,
+  .phone-contact {
+    display: none;
+  }
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .hero-section {
+    padding: 40px 0;
+    min-height: auto;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: left;
+  }
+  .hero-title {
+    font-size: 2.6rem;
+  }
+  .hero-subtitle {
+    font-size: 1.02rem;
+  }
+
+  .hero-right {
+    margin-top: 10px;
+    justify-content: center;
+  }
+  .hero-visual-container {
+    max-width: 440px;
+  }
+
+  .dark-callback-card {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin-top: -30px;
+    width: 100%;
+    max-width: 100%;
+    z-index: 10;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .why-gsf-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .callback-container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .whatsapp-card {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+    padding: 28px 20px;
+  }
+  .whatsapp-content {
+    flex-direction: column;
+  }
+}
+
+/* Mobile Large (<= 768px) */
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 48px 0;
+  }
+  .hero-title {
+    font-size: 2.1rem;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .hero-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-timeline-horizontal {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .eligibility-modal-card {
+    max-width: 95vw;
+    padding: 24px 16px;
+  }
+
+  .branch-modal-container {
+    max-width: 95vw;
+    padding: 20px 16px;
+  }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+  .hero-subtitle {
+    font-size: 0.94rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+  .callback-form-card {
+    padding: 20px 16px;
+  }
+  .floating-whatsapp-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+  }
+  .loan-calc-container {
+    padding: 20px 14px;
+  }
+  .partner-logo-card {
+    padding: 12px;
+  }
+}
+
+/* Extra Small Mobile (320px - 375px) */
+@media (max-width: 375px) {
+  .container {
+    padding: 0 12px;
+  }
+  .hero-title {
+    font-size: 1.55rem;
+  }
+  .btn {
+    padding: 0 16px;
+    font-size: 0.86rem;
+    height: 44px;
+  }
+}

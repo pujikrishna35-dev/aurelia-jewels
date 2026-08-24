@@ -1,0 +1,208 @@
+.loan-calculator-section {
+  background-color: var(--bg-main);
+  padding: 80px 0;
+}
+
+.calculator-wrapper-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.calculator-inputs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+}
+
+.input-value-badge {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary-teal);
+  background-color: var(--primary-teal-subtle);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.calc-select-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-light);
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--dark-navy);
+  background-color: var(--bg-soft);
+  outline: none;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.calc-select-input:focus {
+  border-color: var(--primary-teal);
+  background-color: #FFFFFF;
+}
+
+.calc-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border-light);
+  outline: none;
+  accent-color: var(--primary-teal);
+  cursor: pointer;
+}
+
+.slider-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Summary Column Right */
+.calculator-summary-col {
+  background: linear-gradient(135deg, var(--dark-navy) 0%, #0F4563 100%);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  color: #FFFFFF;
+  box-shadow: 0 10px 28px rgba(7, 50, 74, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.emi-result-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.emi-title-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent-gold);
+}
+
+.emi-amount-display {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 6px 0;
+}
+
+.emi-per-month {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.emi-note {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.92rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.breakdown-item.breakdown-total {
+  border-bottom: none;
+  font-weight: 700;
+  font-size: 1rem;
+  padding-top: 4px;
+}
+
+.breakdown-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.breakdown-val {
+  font-weight: 700;
+}
+
+.calc-action-area {
+  margin-bottom: 16px;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+.calc-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .calculator-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .calculator-wrapper-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator-summary-col {
+    padding: 24px 18px;
+  }
+
+  .emi-amount-display {
+    font-size: 1.9rem;
+  }
+}

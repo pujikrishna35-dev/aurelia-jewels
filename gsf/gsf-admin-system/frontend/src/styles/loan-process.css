@@ -1,0 +1,214 @@
+/* Our Simple Loan Process Section - Connected Horizontal Timeline */
+.loan-process-section {
+  padding: 70px 0;
+  background-color: #F4F8F7;
+  position: relative;
+  overflow: hidden;
+}
+
+.loan-process-container {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Centered Header */
+.loan-process-header {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 56px auto;
+}
+
+.loan-process-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #005C5B;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.loan-process-heading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.loan-process-description {
+  font-size: 0.95rem;
+  color: #475569;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Timeline Wrapper & Connected Line */
+.process-timeline-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.process-connecting-line {
+  position: absolute;
+  top: 32px;
+  left: 8.33%;
+  width: 83.34%;
+  height: 2px;
+  background-color: #005C5B;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 6-Column Grid for Steps */
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.process-step-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Circular Icon Container */
+.step-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 2px solid #E6F4F1;
+  box-shadow: 0 6px 20px rgba(0, 92, 91, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.25s ease;
+  cursor: default;
+  z-index: 3;
+}
+
+.process-step-node:hover .step-icon-wrapper {
+  transform: translateY(-4px);
+  border-color: #005C5B;
+  box-shadow: 0 10px 24px rgba(0, 92, 91, 0.22);
+}
+
+.step-icon {
+  transition: transform 0.25s ease;
+}
+
+.process-step-node:hover .step-icon {
+  transform: scale(1.1);
+}
+
+/* Step Number Badge (Dark Teal Circle) */
+.step-number-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: #005C5B;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 800;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Step Typography */
+.step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 16px 0 4px 0;
+  line-height: 1.25;
+}
+
+.step-subtitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #005C5B;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.step-desc {
+  font-size: 0.84rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 200px;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+
+/* Tablet Layout (3 columns x 2 rows) */
+@media (max-width: 1199px) {
+  .process-connecting-line {
+    display: none;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 24px;
+  }
+
+  .step-desc {
+    max-width: 240px;
+  }
+}
+
+/* Mobile Vertical Timeline Layout */
+@media (max-width: 767px) {
+  .loan-process-section {
+    padding: 44px 0;
+  }
+
+  .loan-process-heading {
+    font-size: 1.75rem;
+  }
+
+  .loan-process-header {
+    margin-bottom: 36px;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .process-step-node {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 16px;
+  }
+
+  .step-icon-wrapper {
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    margin: 0 0 2px 0;
+  }
+
+  .step-desc {
+    max-width: 100%;
+  }
+}

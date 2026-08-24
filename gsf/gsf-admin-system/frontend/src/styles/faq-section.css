@@ -1,0 +1,112 @@
+.faq-section {
+  background-color: var(--bg-soft);
+  padding: 80px 0;
+}
+
+.faq-accordion-container {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-accordion-item {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.faq-accordion-item:hover {
+  border-color: var(--border-teal);
+}
+
+.faq-accordion-item.open {
+  border-color: var(--primary-teal);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-question-btn {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  gap: 16px;
+}
+
+.question-text-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.faq-icon-help {
+  flex-shrink: 0;
+}
+
+.question-text {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  line-height: 1.35;
+}
+
+.chevron-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition-fast);
+}
+
+.faq-accordion-item.open .chevron-circle {
+  background-color: var(--primary-teal-subtle);
+  color: var(--primary-teal);
+}
+
+.chevron-icon {
+  transition: transform 0.3s ease;
+  color: var(--dark-navy);
+}
+
+.chevron-icon.rotate {
+  transform: rotate(180deg);
+  color: var(--primary-teal);
+}
+
+.faq-answer-body {
+  padding: 0 24px 24px 58px;
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.65;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@media (max-width: 640px) {
+  .faq-question-btn {
+    padding: 16px 18px;
+  }
+
+  .faq-answer-body {
+    padding: 0 18px 20px 18px;
+    font-size: 0.9rem;
+  }
+
+  .question-text {
+    font-size: 0.98rem;
+  }
+}

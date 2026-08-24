@@ -1,0 +1,61 @@
+:root {
+  /* Brand Primary Colors - Deep Teal & Dark Navy */
+  --primary-teal: #005C5B;
+  --primary-teal-dark: #004544;
+  --primary-teal-light: #007675;
+  --primary-teal-subtle: #E6F4F3;
+  --primary-mint: #F2FAF8;
+
+  --dark-navy: #07324A;
+  --navy-light: #0F4563;
+
+  /* Accent Colors - Gold */
+  --accent-gold: #F4B63F;
+  --accent-gold-dark: #D9941E;
+  --accent-gold-light: #FCD98B;
+  --accent-gold-bg: #FEF9EE;
+
+  /* Neutral Text Colors */
+  --text-dark: #07324A;
+  --text-body: #334155;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+  --text-white: #FFFFFF;
+
+  /* Background Colors */
+  --bg-main: #FFFFFF;
+  --bg-soft: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-light-mint: #F2FAF8;
+
+  /* Functional Colors */
+  --whatsapp-green: #25D366;
+  --whatsapp-dark: #128C7E;
+  --border-light: #E2E8F0;
+  --border-teal: #B2E0DE;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(7, 50, 74, 0.04);
+  --shadow-md: 0 6px 16px rgba(7, 50, 74, 0.08);
+  --shadow-lg: 0 12px 32px rgba(7, 50, 74, 0.12);
+  --shadow-hover: 0 20px 40px rgba(7, 50, 74, 0.15);
+
+  /* Borders & Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+
+  /* Layout Container */
+  --max-width: 1320px;
+  --header-height: 70px;
+}

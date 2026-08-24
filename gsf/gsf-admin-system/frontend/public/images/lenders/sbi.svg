@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
+  <!-- SBI Keyhole Circle Logo -->
+  <g transform="translate(10, 8)">
+    <circle cx="22" cy="22" r="22" fill="#00B5EF"/>
+    <circle cx="22" cy="15" r="7" fill="#FFFFFF"/>
+    <rect x="20" y="15" width="4" height="29" fill="#FFFFFF"/>
+  </g>
+  <!-- Text: SBI / State Bank of India -->
+  <text x="64" y="32" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900" fill="#003566" letter-spacing="1">SBI</text>
+  <text x="64" y="47" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#00B5EF" letter-spacing="0.5">STATE BANK OF INDIA</text>
+</svg>

@@ -1,0 +1,121 @@
+.loan-categories-section {
+  padding: 32px 0 45px;
+  background-color: var(--bg-main, #FFFFFF);
+  position: relative;
+  z-index: 10;
+}
+
+.loan-options-container {
+  width: 100%;
+  max-width: var(--max-width, 1320px);
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.loan-options-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.loan-option-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light, #E2E8F0);
+  border-radius: var(--radius-lg, 14px);
+  padding: 28px 18px 24px;
+  box-shadow: 0 4px 16px rgba(7, 50, 74, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.loan-option-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(7, 50, 74, 0.1);
+  border-color: var(--border-teal, #B2E0DE);
+}
+
+.loan-option-icon {
+  color: var(--primary-teal, #005C5B);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  height: 48px;
+  width: 48px;
+  border-radius: 12px;
+  background-color: var(--primary-teal-subtle, #E6F4F3);
+  transition: var(--transition-fast, all 0.2s ease);
+}
+
+.loan-option-card:hover .loan-option-icon {
+  background-color: var(--primary-teal, #005C5B);
+  color: #FFFFFF;
+}
+
+.loan-option-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark-navy, #07324A);
+  margin: 0 0 10px 0;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.loan-option-desc {
+  font-size: 0.84rem;
+  color: var(--text-body, #334155);
+  line-height: 1.45;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+}
+
+/* Responsive Rules */
+@media (max-width: 1200px) {
+  .loan-categories-section {
+    padding: 28px 0 35px;
+  }
+
+  .loan-options-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .loan-categories-section {
+    padding: 20px 0 25px;
+  }
+
+  .loan-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .loan-option-card {
+    padding: 22px 14px 20px;
+  }
+
+  .loan-option-title {
+    font-size: 0.98rem;
+  }
+
+  .loan-option-desc {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .loan-options-grid {
+    grid-template-columns: 1fr;
+  }
+}

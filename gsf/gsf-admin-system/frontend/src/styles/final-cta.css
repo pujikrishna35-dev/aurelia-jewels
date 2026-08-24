@@ -1,0 +1,116 @@
+.final-cta-section {
+  padding: 60px 0;
+  background-color: var(--bg-main);
+}
+
+.final-cta-card {
+  background: linear-gradient(135deg, var(--dark-navy) 0%, #004544 100%);
+  border-radius: var(--radius-xl);
+  padding: 64px 40px;
+  text-align: center;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta-card::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(244, 182, 63, 0.08);
+  pointer-events: none;
+}
+
+.final-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(244, 182, 63, 0.4);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 24px;
+}
+
+.final-cta-heading {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.final-cta-subtext {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 640px;
+  margin: 0 auto 36px auto;
+  line-height: 1.6;
+}
+
+.final-cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.btn-lg {
+  height: 52px;
+  padding: 0 32px;
+  font-size: 1rem;
+}
+
+.btn-secondary-white {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.btn-secondary-white:hover {
+  background-color: #FFFFFF;
+  color: var(--dark-navy);
+  transform: translateY(-2px);
+}
+
+.final-cta-trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .final-cta-card {
+    padding: 40px 24px;
+  }
+
+  .final-cta-heading {
+    font-size: 2rem;
+  }
+
+  .final-cta-subtext {
+    font-size: 1rem;
+  }
+
+  .final-cta-trust-strip {
+    gap: 12px;
+    flex-direction: column;
+  }
+}

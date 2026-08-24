@@ -1,0 +1,859 @@
+/* Country Education Loan Journey Styles */
+
+.country-page {
+  width: 100%;
+  background-color: var(--bg-main);
+}
+
+/* 1. HERO SECTION */
+.country-hero-section {
+  position: relative;
+  background: linear-gradient(135deg, #07324A 0%, #005C5B 100%);
+  color: #FFFFFF;
+  padding: 64px 24px;
+  overflow: hidden;
+}
+
+.country-hero-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.country-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-gold-light);
+}
+
+.country-hero-badge .flag-icon {
+  font-size: 1.4rem;
+}
+
+.country-hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.country-hero-title .country-highlight {
+  color: var(--accent-gold);
+}
+
+.country-hero-desc {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 640px;
+}
+
+.country-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.country-meta-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.country-meta-label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.country-meta-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+}
+
+.country-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--accent-gold);
+  color: #07324A;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-hero-primary:hover {
+  background-color: #E2A32B;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 182, 63, 0.3);
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+.country-hero-image-box {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 4px solid rgba(255, 255, 255, 0.15);
+}
+
+.country-hero-image-box img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 2. LOAN HIGHLIGHTS SECTION */
+.country-section {
+  padding: 72px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-title-center {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--primary-teal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.section-heading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark-navy);
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.highlight-card {
+  background: #FFFFFF;
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-teal);
+}
+
+.highlight-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.highlight-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary-teal);
+  margin-bottom: 4px;
+}
+
+.highlight-subtext {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* 3. COVERAGE / EXPENSES SECTION */
+.bg-soft-section {
+  background-color: var(--bg-soft);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.expenses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+}
+
+.expense-card {
+  background: #FFFFFF;
+  padding: 28px 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.expense-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-teal-light);
+}
+
+.expense-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: var(--primary-teal-subtle);
+  color: var(--primary-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.expense-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  margin-bottom: 8px;
+}
+
+.expense-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* 4. LOAN OPTIONS CARDS */
+.loan-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
+}
+
+.loan-option-card {
+  background: #FFFFFF;
+  border-radius: 18px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.loan-option-card.featured {
+  border: 2px solid var(--primary-teal);
+  box-shadow: var(--shadow-lg);
+}
+
+.loan-badge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  background: var(--primary-teal);
+  color: #FFFFFF;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.loan-badge.gold {
+  background: var(--accent-gold-dark);
+  color: #FFFFFF;
+}
+
+.option-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dark-navy);
+  margin-bottom: 6px;
+}
+
+.option-tagline {
+  font-size: 0.92rem;
+  color: var(--primary-teal);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.option-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px 0;
+}
+
+.option-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-body);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.option-features li svg {
+  color: var(--primary-teal);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.btn-option-cta {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  background-color: var(--dark-navy);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.btn-option-cta:hover {
+  background-color: var(--primary-teal);
+}
+
+/* 5. COMPARISON TABLE */
+.comparison-table-wrap {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  background: #FFFFFF;
+  margin-bottom: 28px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.comparison-table th {
+  background: var(--dark-navy);
+  color: #FFFFFF;
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.comparison-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.92rem;
+  color: var(--text-body);
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:nth-child(even) {
+  background-color: #F8FAFC;
+}
+
+.comparison-feature-col {
+  font-weight: 700;
+  color: var(--dark-navy);
+  width: 25%;
+}
+
+.comparison-cta-box {
+  text-align: center;
+}
+
+/* 6. MULTI-STEP ELIGIBILITY FORM */
+.eligibility-wizard-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.wizard-progress-bar {
+  height: 6px;
+  background: var(--border-light);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.wizard-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-teal) 0%, var(--accent-gold) 100%);
+  transition: width 0.3s ease;
+}
+
+.wizard-step-header {
+  margin-bottom: 28px;
+}
+
+.wizard-step-num {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--primary-teal);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+}
+
+.wizard-step-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dark-navy);
+  margin-top: 4px;
+}
+
+.wizard-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.wizard-option-btn {
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid var(--border-light);
+  background: #FFFFFF;
+  color: var(--dark-navy);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.wizard-option-btn:hover {
+  border-color: var(--primary-teal);
+  background: var(--primary-mint);
+}
+
+.wizard-option-btn.selected {
+  border-color: var(--primary-teal);
+  background: var(--primary-teal-subtle);
+  color: var(--primary-teal-dark);
+}
+
+.wizard-input-group {
+  margin-bottom: 24px;
+}
+
+.wizard-input-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  margin-bottom: 8px;
+}
+
+.wizard-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-light);
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.wizard-input:focus {
+  outline: none;
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 3px rgba(0, 92, 91, 0.1);
+}
+
+.wizard-nav-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.btn-wizard-prev {
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-wizard-next {
+  padding: 14px 28px;
+  border-radius: 10px;
+  background: var(--primary-teal);
+  color: #FFFFFF;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-wizard-next:hover {
+  background-color: var(--primary-teal-dark);
+}
+
+/* 7. ELIGIBILITY RESULT CARD */
+.result-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 2px solid var(--primary-teal);
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.result-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--primary-teal-subtle);
+  color: var(--primary-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.result-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--dark-navy);
+  margin-bottom: 8px;
+}
+
+.result-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.result-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  text-align: left;
+  background: #F8FAFC;
+  padding: 24px;
+  border-radius: 14px;
+  margin-bottom: 32px;
+}
+
+.result-item-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.result-item-val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+}
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* 8. REQUIRED DOCUMENTS */
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.document-card {
+  background: #FFFFFF;
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-card-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--dark-navy);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.doc-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-body);
+  margin-bottom: 12px;
+}
+
+.doc-list li svg {
+  color: var(--primary-teal);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.doc-disclaimer {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* 9. VISUAL TIMELINE */
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  position: relative;
+}
+
+.timeline-step-card {
+  background: #FFFFFF;
+  padding: 24px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.timeline-step-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-teal);
+  background: var(--primary-teal-subtle);
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.timeline-step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  margin-bottom: 6px;
+}
+
+.timeline-step-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* 10. UNIVERSITIES GRID */
+.universities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.univ-card {
+  background: #FFFFFF;
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.univ-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: var(--primary-teal-subtle);
+  color: var(--primary-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.univ-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+}
+
+.univ-loc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* 11. FAQ ACCORDION */
+.faq-accordion {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.faq-question-btn {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-answer {
+  padding: 0 24px 20px 24px;
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 992px) {
+  .country-hero-container {
+    grid-template-columns: 1fr;
+  }
+
+  .country-hero-image-box {
+    display: none;
+  }
+
+  .country-hero-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .country-hero-section {
+    padding: 40px 16px;
+  }
+
+  .country-hero-title {
+    font-size: 1.85rem;
+  }
+
+  .country-section {
+    padding: 48px 16px;
+  }
+
+  .eligibility-wizard-card, .result-card {
+    padding: 24px 16px;
+  }
+
+  .wizard-options-grid {
+    grid-template-columns: 1fr;
+  }
+}

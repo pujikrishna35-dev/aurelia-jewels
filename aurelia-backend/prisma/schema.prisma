@@ -1,0 +1,976 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Address {
+  id              Int               @id @default(autoincrement())
+  tenantId        Int
+  customerId      Int
+  fullName        String
+  phone           String
+  addressLine1    String
+  addressLine2    String?
+  city            String
+  state           String
+  country         String
+  postalCode      String
+  landmark        String?
+  isDefault       Boolean           @default(false)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+  Customer        Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  Tenant          Tenant            @relation(fields: [tenantId], references: [id])
+  CheckoutSession CheckoutSession[]
+
+  @@index([customerId])
+  @@index([tenantId])
+}
+
+model AdminUser {
+  id                                Int                  @id @default(autoincrement())
+  tenantId                          Int
+  email                             String               @unique
+  passwordHash                      String?
+  role                              AdminRole            @default(MANAGER)
+  isActive                          Boolean              @default(true)
+  createdAt                         DateTime             @default(now())
+  updatedAt                         DateTime
+  deletedAt                         DateTime?
+  department                        String?
+  designation                       String?
+  employeeCode                      String?              @unique
+  firstName                         String?
+  fullName                          String?
+  isOwner                           Boolean              @default(false)
+  isVerified                        Boolean              @default(false)
+  lastLogin                         DateTime?
+  lastName                          String?
+  passwordChangedAt                 DateTime?
+  phoneNumber                       String?
+  profileImage                      String?
+  Tenant_AdminUser_tenantIdToTenant Tenant               @relation("AdminUser_tenantIdToTenant", fields: [tenantId], references: [id], onDelete: Cascade)
+  PasswordResetToken                PasswordResetToken[]
+  RefreshToken                      RefreshToken[]
+  Tenant_Tenant_ownerIdToAdminUser  Tenant[]             @relation("Tenant_ownerIdToAdminUser")
+
+  @@index([email])
+  @@index([employeeCode])
+  @@index([role])
+  @@index([tenantId])
+}
+
+model Cart {
+  id              Int              @id @default(autoincrement())
+  tenantId        Int
+  customerId      Int              @unique
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime
+  cartCode        String?          @unique
+  Customer        Customer         @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  Tenant          Tenant           @relation(fields: [tenantId], references: [id])
+  CartItem        CartItem[]
+  CheckoutSession CheckoutSession?
+
+  @@index([customerId])
+  @@index([tenantId])
+}
+
+model CartItem {
+  id               Int             @id @default(autoincrement())
+  cartId           Int
+  productId        Int
+  productName      String
+  productImage     String?
+  sku              String?
+  quantity         Int             @default(1)
+  unitPrice        Decimal         @default(0) @db.Decimal(12, 2)
+  makingCharge     Decimal         @default(0) @db.Decimal(12, 2)
+  gstAmount        Decimal         @default(0) @db.Decimal(12, 2)
+  stoneAmount      Decimal         @default(0) @db.Decimal(12, 2)
+  discountAmount   Decimal         @default(0) @db.Decimal(12, 2)
+  totalPrice       Decimal         @default(0) @db.Decimal(12, 2)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime
+  grossWeight      Decimal?        @db.Decimal(12, 3)
+  gstPercentage    Decimal         @default(0) @db.Decimal(5, 2)
+  metalType        String?
+  netWeight        Decimal?        @db.Decimal(12, 3)
+  productVariantId Int?
+  stoneWeight      Decimal?        @db.Decimal(12, 3)
+  tenantId         Int
+  Cart             Cart            @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  Product          Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  ProductVariant   ProductVariant? @relation(fields: [productVariantId], references: [id])
+  Tenant           Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([cartId, productId])
+  @@index([cartId])
+  @@index([productId])
+  @@index([productVariantId])
+  @@index([tenantId])
+}
+
+model Category {
+  id               Int          @id @default(autoincrement())
+  tenantId         Int
+  parentCategoryId Int?
+  name             String
+  slug             String
+  imageUrl         String?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime
+  deletedAt        DateTime?
+  description      String?
+  displayOrder     Int          @default(0)
+  isActive         Boolean      @default(true)
+  isFeatured       Boolean      @default(false)
+  seoDescription   String?
+  seoTitle         String?
+  Category         Category?    @relation("CategoryToCategory", fields: [parentCategoryId], references: [id])
+  other_Category   Category[]   @relation("CategoryToCategory")
+  Tenant           Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  Discount         Discount[]
+  ModelImage       ModelImage[]
+  Product          Product[]
+
+  @@unique([tenantId, slug])
+  @@index([displayOrder])
+  @@index([parentCategoryId])
+  @@index([slug])
+  @@index([tenantId])
+}
+
+model CheckoutSession {
+  id             Int      @id @default(autoincrement())
+  tenantId       Int
+  customerId     Int
+  cartId         Int      @unique
+  addressId      Int?
+  subtotal       Decimal  @default(0) @db.Decimal(12, 2)
+  makingCharges  Decimal  @default(0) @db.Decimal(12, 2)
+  gstAmount      Decimal  @default(0) @db.Decimal(12, 2)
+  grandTotal     Decimal  @default(0) @db.Decimal(12, 2)
+  status         String   @default("INITIALIZED")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime
+  discountAmount Decimal  @default(0) @db.Decimal(12, 2)
+  expiresAt      DateTime
+  shippingAmount Decimal  @default(0) @db.Decimal(12, 2)
+  stoneAmount    Decimal  @default(0) @db.Decimal(12, 2)
+  Address        Address? @relation(fields: [addressId], references: [id])
+  Cart           Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  Customer       Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  Tenant         Tenant   @relation(fields: [tenantId], references: [id])
+  Payment        Payment?
+
+  @@index([customerId])
+  @@index([status])
+  @@index([tenantId])
+}
+
+model Collection {
+  id             Int        @id @default(autoincrement())
+  tenantId       Int
+  name           String
+  slug           String
+  description    String?
+  banner         String?
+  image          String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime
+  deletedAt      DateTime?
+  displayOrder   Int        @default(0)
+  isActive       Boolean    @default(true)
+  isFeatured     Boolean    @default(false)
+  seoDescription String?
+  seoTitle       String?
+  subtitle       String?
+  Tenant         Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  Discount       Discount[]
+  Product        Product[]
+
+  @@unique([tenantId, slug])
+  @@index([displayOrder])
+  @@index([slug])
+  @@index([tenantId])
+}
+
+model Coupon {
+  id                Int          @id @default(autoincrement())
+  tenantId          Int
+  code              String
+  description       String?
+  discountType      DiscountType
+  discountValue     Decimal      @db.Decimal(12, 2)
+  minPurchaseAmount Decimal?     @db.Decimal(12, 2)
+  maxDiscount       Decimal?     @db.Decimal(12, 2)
+  maxUsageCount     Int?
+  usageCount        Int          @default(0)
+  isActive          Boolean      @default(true)
+  validFrom         DateTime     @default(now())
+  validUntil        DateTime     @default(now())
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime
+  Tenant            Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, code])
+  @@index([code])
+  @@index([tenantId])
+}
+
+model Customer {
+  id              Int               @id @default(autoincrement())
+  tenantId        Int
+  fullName        String
+  email           String
+  phone           String?
+  passwordHash    String
+  isVerified      Boolean           @default(false)
+  isActive        Boolean           @default(true)
+  lastLoginAt     DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+  customerCode    String?           @unique
+  role            CustomerRole      @default(CUSTOMER)
+  maritalStatus   String?
+  panNumber       String?
+  spouseName      String?
+  anniversary     DateTime?
+  dob             DateTime?
+  spouseDob       DateTime?
+  Address         Address[]
+  Cart            Cart?
+  CheckoutSession CheckoutSession[]
+  Tenant          Tenant            @relation(fields: [tenantId], references: [id])
+  Order           Order[]
+  Payment         Payment[]
+  RefreshToken    RefreshToken[]
+  Review          Review[]
+  Wishlist        Wishlist[]
+
+  @@unique([tenantId, email])
+  @@index([email])
+  @@index([tenantId])
+}
+
+model Discount {
+  id                                   Int           @id @default(autoincrement())
+  tenantId                             Int
+  name                                 String
+  type                                 DiscountType  @default(PERCENTAGE)
+  value                                Decimal       @db.Decimal(12, 2)
+  scope                                DiscountScope
+  productId                            Int?
+  categoryId                           Int?
+  collectionId                         Int?
+  minimumOrderValue                    Decimal?      @db.Decimal(12, 2)
+  maximumDiscountAmount                Decimal?      @db.Decimal(12, 2)
+  startDate                            DateTime
+  endDate                              DateTime
+  isActive                             Boolean       @default(true)
+  createdAt                            DateTime      @default(now())
+  updatedAt                            DateTime
+  goldValue                            Decimal       @default(0) @db.Decimal(12, 2)
+  makingValue                          Decimal       @default(0) @db.Decimal(12, 2)
+  stonesValue                          Decimal       @default(0) @db.Decimal(12, 2)
+  Category                             Category?     @relation(fields: [categoryId], references: [id])
+  Collection                           Collection?   @relation(fields: [collectionId], references: [id])
+  Product_Discount_productIdToProduct  Product?      @relation("Discount_productIdToProduct", fields: [productId], references: [id])
+  Tenant                               Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  Product_Product_discountIdToDiscount Product[]     @relation("Product_discountIdToDiscount")
+
+  @@index([tenantId])
+}
+
+model Invoice {
+  id            Int       @id @default(autoincrement())
+  tenantId      Int
+  orderId       Int
+  invoiceNumber String    @unique
+  invoiceDate   DateTime
+  createdAt     DateTime  @default(now())
+  amount        Decimal   @db.Decimal(12, 2)
+  dueDate       DateTime?
+  pdfUrl        String?
+  status        String    @default("DRAFT")
+  updatedAt     DateTime
+  refundCode    String?   @unique
+  Order         Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Tenant        Tenant    @relation(fields: [tenantId], references: [id])
+
+  @@index([orderId])
+  @@index([tenantId])
+}
+
+model Metal {
+  id         Int          @id @default(autoincrement())
+  tenantId   Int
+  name       String
+  unit       String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime
+  Tenant     Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  MetalPrice MetalPrice[]
+
+  @@unique([tenantId, name])
+}
+
+model MetalPrice {
+  id        Int      @id @default(autoincrement())
+  metalId   Int
+  price     Decimal  @db.Decimal(12, 2)
+  currency  String   @default("INR")
+  priceDate DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  tenantId  Int
+  Metal     Metal    @relation(fields: [metalId], references: [id], onDelete: Cascade)
+  Tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([metalId])
+  @@index([tenantId])
+}
+
+model ModelImage {
+  id           Int      @id @default(autoincrement())
+  tenantId     Int
+  imageUrl     String
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+  categoryId   Int
+  isActive     Boolean  @default(true)
+  title        String
+  Category     Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  Tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+}
+
+model Order {
+  id                    Int                  @id @default(autoincrement())
+  tenantId              Int
+  customerId            Int
+  orderNumber           String               @unique
+  subtotal              Decimal              @db.Decimal(12, 2)
+  makingCharges         Decimal              @default(0) @db.Decimal(12, 2)
+  gstAmount             Decimal              @default(0) @db.Decimal(12, 2)
+  discountAmount        Decimal              @default(0) @db.Decimal(12, 2)
+  shippingAmount        Decimal              @default(0) @db.Decimal(12, 2)
+  grandTotal            Decimal              @db.Decimal(12, 2)
+  currency              String               @default("INR")
+  status                OrderStatus          @default(PENDING_PAYMENT)
+  paymentStatus         PaymentStatus        @default(PENDING)
+  deliveryStatus        DeliveryStatus       @default(PENDING)
+  notes                 String?
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime
+  courierName           String?
+  deliveredAt           DateTime?
+  estimatedDeliveryDate DateTime?
+  shipmentId            Int?
+  trackingNumber        String?
+  appliedDiscountId     Int?
+  Invoice               Invoice[]
+  Customer              Customer             @relation(fields: [customerId], references: [id])
+  Tenant                Tenant               @relation(fields: [tenantId], references: [id])
+  OrderItem             OrderItem[]
+  OrderStatusHistory    OrderStatusHistory[]
+  Payment               Payment?
+  Shipment              Shipment[]
+
+  @@index([customerId])
+  @@index([status])
+  @@index([tenantId])
+}
+
+model OrderItem {
+  id                Int             @id @default(autoincrement())
+  orderId           Int
+  productId         Int
+  productName       String
+  sku               String?
+  imageUrl          String?
+  metal             String?
+  stone             String?
+  size              String?
+  quantity          Int
+  unitPrice         Decimal         @db.Decimal(12, 2)
+  makingCharge      Decimal         @default(0) @db.Decimal(12, 2)
+  gstAmount         Decimal         @default(0) @db.Decimal(12, 2)
+  discountAmount    Decimal         @default(0) @db.Decimal(12, 2)
+  stoneAmount       Decimal         @default(0) @db.Decimal(12, 2)
+  grossWeight       Decimal?        @db.Decimal(12, 3)
+  netWeight         Decimal?        @db.Decimal(12, 3)
+  totalPrice        Decimal         @db.Decimal(12, 2)
+  createdAt         DateTime        @default(now())
+  productVariantId  Int?
+  tenantId          Int
+  appliedDiscountId Int?
+  Order             Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Product           Product         @relation(fields: [productId], references: [id])
+  ProductVariant    ProductVariant? @relation(fields: [productVariantId], references: [id])
+  Tenant            Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([productId])
+  @@index([productVariantId])
+  @@index([tenantId])
+}
+
+model OrderStatusHistory {
+  id          Int         @id @default(autoincrement())
+  orderId     Int
+  status      OrderStatus
+  remarks     String?
+  changedBy   String?
+  createdAt   DateTime    @default(now())
+  description String?
+  location    String?
+  tenantId    Int
+  Order       Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Tenant      Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([tenantId])
+}
+
+model PasswordResetToken {
+  id          String    @id
+  adminUserId Int
+  tokenHash   String    @unique
+  expiresAt   DateTime
+  usedAt      DateTime?
+  createdAt   DateTime  @default(now())
+  AdminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@index([adminUserId])
+  @@index([expiresAt])
+}
+
+model Payment {
+  id                 Int                  @id @default(autoincrement())
+  tenantId           Int
+  orderId            Int?                 @unique
+  customerId         Int
+  paymentGatewayId   String
+  checkoutSessionId  Int?                 @unique
+  razorpayOrderId    String
+  razorpayPaymentId  String?
+  razorpaySignature  String?
+  subtotal           Decimal              @default(0) @db.Decimal(12, 2)
+  makingCharges      Decimal              @default(0) @db.Decimal(12, 2)
+  gstAmount          Decimal              @default(0) @db.Decimal(12, 2)
+  discountAmount     Decimal              @default(0) @db.Decimal(12, 2)
+  shippingAmount     Decimal              @default(0) @db.Decimal(12, 2)
+  grandTotal         Decimal              @db.Decimal(12, 2)
+  currency           String               @default("INR")
+  paymentMethod      String?
+  status             PaymentStatus        @default(PENDING)
+  paidAt             DateTime?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime
+  paymentCode        String?              @unique
+  CheckoutSession    CheckoutSession?     @relation(fields: [checkoutSessionId], references: [id])
+  Customer           Customer             @relation(fields: [customerId], references: [id])
+  Order              Order?               @relation(fields: [orderId], references: [id])
+  Tenant             Tenant               @relation(fields: [tenantId], references: [id])
+  PaymentAttempt     PaymentAttempt[]
+  PaymentTransaction PaymentTransaction[]
+  Refund             Refund[]
+
+  @@index([customerId])
+  @@index([status])
+  @@index([tenantId])
+}
+
+model PaymentAttempt {
+  id             Int      @id @default(autoincrement())
+  tenantId       Int
+  paymentId      Int
+  amount         Decimal  @db.Decimal(12, 2)
+  gateway        String
+  gatewayOrderId String?
+  status         String
+  errorMessage   String?
+  createdAt      DateTime @default(now())
+  Payment        Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  Tenant         Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([paymentId])
+  @@index([tenantId])
+}
+
+model PaymentTransaction {
+  id              Int           @id @default(autoincrement())
+  paymentId       Int
+  transactionId   String
+  amount          Decimal       @db.Decimal(12, 2)
+  status          PaymentStatus
+  gatewayResponse Json?
+  createdAt       DateTime      @default(now())
+  tenantId        Int
+  Payment         Payment       @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  Tenant          Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId])
+  @@index([tenantId])
+}
+
+model PaymentWebhook {
+  id        Int      @id @default(autoincrement())
+  tenantId  Int
+  event     String
+  payload   Json
+  processed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  Tenant    Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([processed])
+  @@index([tenantId])
+}
+
+model Product {
+  id                                    Int              @id @default(autoincrement())
+  tenantId                              Int
+  categoryId                            Int
+  collectionId                          Int?
+  name                                  String
+  slug                                  String
+  sku                                   String
+  description                           String?
+  makingCharge                          Decimal?         @db.Decimal(12, 2)
+  wastage                               Decimal?         @db.Decimal(12, 3)
+  grossWeight                           Decimal?         @db.Decimal(12, 3)
+  stockQuantity                         Int              @default(0)
+  isBestSeller                          Boolean          @default(false)
+  isNew                                 Boolean          @default(false)
+  isActive                              Boolean          @default(true)
+  seoTitle                              String?
+  seoDescription                        String?
+  createdAt                             DateTime         @default(now())
+  updatedAt                             DateTime
+  deletedAt                             DateTime?
+  amountWithoutGst                      Decimal?         @db.Decimal(12, 2)
+  amountWithoutStones                   Decimal?         @db.Decimal(12, 2)
+  basePrice                             Decimal?         @db.Decimal(12, 2)
+  gstAmount                             Decimal?         @db.Decimal(12, 2)
+  gstPercentage                         Decimal?         @db.Decimal(5, 2)
+  hoverImageUrl                         String?
+  imageUrl                              String?
+  isEngravable                          Boolean          @default(false)
+  longDescription                       String?
+  metalType                             String?
+  netWeight                             Decimal?         @db.Decimal(12, 3)
+  originalPrice                         Decimal?         @db.Decimal(12, 2)
+  rating                                Decimal?         @db.Decimal(3, 2)
+  stoneAmount                           Decimal?         @db.Decimal(12, 2)
+  totalAmount                           Decimal?         @db.Decimal(12, 2)
+  pricingMode                           PricingMode      @default(DETAILED)
+  manualPrice                           Decimal?         @db.Decimal(12, 2)
+  manualPriceIncludesGst                Boolean          @default(false)
+  discountAmount                        Decimal?         @db.Decimal(12, 2)
+  isDiscountApplied                     Boolean          @default(false)
+  discountId                            Int?
+  discountName                          String?
+  CartItem                              CartItem[]
+  Discount_Discount_productIdToProduct  Discount[]       @relation("Discount_productIdToProduct")
+  OrderItem                             OrderItem[]
+  Category                              Category         @relation(fields: [categoryId], references: [id])
+  Collection                            Collection?      @relation(fields: [collectionId], references: [id])
+  Discount_Product_discountIdToDiscount Discount?        @relation("Product_discountIdToDiscount", fields: [discountId], references: [id])
+  Tenant                                Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  ProductImage                          ProductImage[]
+  ProductMetal                          ProductMetal[]
+  ProductOption                         ProductOption[]
+  ProductVariant                        ProductVariant[]
+  Review                                Review[]
+  RingSize                              RingSize[]
+  Wishlist                              Wishlist[]
+
+  @@unique([tenantId, sku])
+  @@unique([tenantId, slug])
+  @@index([categoryId])
+  @@index([collectionId])
+  @@index([isActive, isNew, isBestSeller, tenantId])
+  @@index([sku])
+  @@index([slug])
+  @@index([tenantId])
+}
+
+model ProductImage {
+  id           Int      @id @default(autoincrement())
+  productId    Int
+  imageUrl     String
+  altText      String?
+  displayOrder Int      @default(0)
+  isPrimary    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+  tenantId     Int
+  Product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([tenantId])
+}
+
+model ProductMetal {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  tenantId    Int
+  isAvailable Boolean  @default(true)
+  metalType   String
+  purity      String?
+  Product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, metalType])
+  @@index([productId])
+  @@index([tenantId])
+}
+
+model ProductOption {
+  id            Int      @id @default(autoincrement())
+  productId     Int
+  optionName    String
+  optionValue   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime
+  tenantId      Int
+  displayOrder  Int      @default(0)
+  isAvailable   Boolean  @default(true)
+  optionType    String
+  priceModifier Decimal? @db.Decimal(12, 2)
+  Product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Tenant        Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([tenantId])
+}
+
+model ProductVariant {
+  id              Int         @id @default(autoincrement())
+  productId       Int
+  ringSize        String?
+  priceAdjustment Decimal?    @db.Decimal(12, 2)
+  stockQuantity   Int         @default(0)
+  sku             String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime
+  deletedAt       DateTime?
+  tenantId        Int
+  barcode         String?
+  carat           Decimal?    @db.Decimal(12, 3)
+  diamondType     String?
+  isActive        Boolean     @default(true)
+  metal           String?
+  CartItem        CartItem[]
+  OrderItem       OrderItem[]
+  Product         Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Tenant          Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  Wishlist        Wishlist[]
+
+  @@unique([tenantId, sku])
+  @@index([productId])
+  @@index([tenantId])
+}
+
+model RefreshToken {
+  id         Int        @id @default(autoincrement())
+  customerId Int?
+  token      String
+  expiresAt  DateTime
+  revoked    Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  adminId    Int?
+  tenantId   Int
+  AdminUser  AdminUser? @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  Customer   Customer?  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  Tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@index([customerId])
+  @@index([tenantId])
+}
+
+model Refund {
+  id              Int      @id @default(autoincrement())
+  tenantId        Int
+  paymentId       Int
+  amount          Decimal  @db.Decimal(12, 2)
+  reason          String?
+  status          String   @default("PENDING")
+  createdAt       DateTime @default(now())
+  gatewayRefundId String?
+  updatedAt       DateTime
+  Payment         Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  Tenant          Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([paymentId])
+  @@index([tenantId])
+}
+
+model Review {
+  id               Int       @id @default(autoincrement())
+  tenantId         Int
+  productId        Int
+  customerId       Int?
+  rating           Int
+  title            String?
+  text             String?
+  isApproved       Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime
+  customerEmail    String?
+  customerName     String
+  helpfulCount     Int       @default(0)
+  verifiedPurchase Boolean   @default(false)
+  Customer         Customer? @relation(fields: [customerId], references: [id])
+  Product          Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Tenant           Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@index([productId])
+  @@index([tenantId])
+}
+
+model RingSize {
+  id          Int      @id @default(autoincrement())
+  tenantId    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  isAvailable Boolean  @default(true)
+  productId   Int
+  sizeLabel   String
+  sizeNumber  Decimal? @db.Decimal(5, 2)
+  Product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+}
+
+model Shipment {
+  id                    Int            @id @default(autoincrement())
+  orderId               Int
+  courierName           String?
+  trackingNumber        String?
+  status                DeliveryStatus @default(PENDING)
+  createdAt             DateTime       @default(now())
+  estimatedDeliveryDate DateTime?
+  labelUrl              String?
+  shippingDate          DateTime?
+  updatedAt             DateTime
+  tenantId              Int
+  Order                 Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Tenant                Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([tenantId])
+}
+
+model Stone {
+  id          Int      @id @default(autoincrement())
+  tenantId    Int
+  stoneName   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  ratePerGram Decimal  @db.Decimal(12, 2)
+  unit        String
+  Tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, stoneName])
+  @@index([tenantId])
+}
+
+model Tenant {
+  id                                   Int                  @id @default(autoincrement())
+  Businessname                         String?
+  isActive                             Boolean              @default(true)
+  createdAt                            DateTime             @default(now())
+  updatedAt                            DateTime
+  address                              String?
+  businessEmail                        String?              @unique
+  city                                 String?
+  country                              String?
+  currency                             String?
+  deletedAt                            DateTime?
+  gstNumber                            String?
+  isVerified                           Boolean              @default(false)
+  language                             String?
+  ownerId                              Int?
+  panNumber                            String?
+  phoneNumber1                         String?
+  phoneNumber2                         String?
+  postalCode                           String?
+  slug                                 String               @unique
+  state                                String?
+  subscriptionEnd                      DateTime?
+  subscriptionPlan                     String?
+  subscriptionStart                    DateTime?
+  timezone                             String?
+  website                              String?
+  ownerName                            String               @default("")
+  Address                              Address[]
+  AdminUser_AdminUser_tenantIdToTenant AdminUser[]          @relation("AdminUser_tenantIdToTenant")
+  Cart                                 Cart[]
+  CartItem                             CartItem[]
+  Category                             Category[]
+  CheckoutSession                      CheckoutSession[]
+  Collection                           Collection[]
+  Coupon                               Coupon[]
+  Customer                             Customer[]
+  Discount                             Discount[]
+  Invoice                              Invoice[]
+  Metal                                Metal[]
+  MetalPrice                           MetalPrice[]
+  ModelImage                           ModelImage[]
+  Order                                Order[]
+  OrderItem                            OrderItem[]
+  OrderStatusHistory                   OrderStatusHistory[]
+  Payment                              Payment[]
+  PaymentAttempt                       PaymentAttempt[]
+  PaymentTransaction                   PaymentTransaction[]
+  PaymentWebhook                       PaymentWebhook[]
+  Product                              Product[]
+  ProductImage                         ProductImage[]
+  ProductMetal                         ProductMetal[]
+  ProductOption                        ProductOption[]
+  ProductVariant                       ProductVariant[]
+  RefreshToken                         RefreshToken[]
+  Refund                               Refund[]
+  Review                               Review[]
+  RingSize                             RingSize[]
+  Shipment                             Shipment[]
+  Stone                                Stone[]
+  AdminUser_Tenant_ownerIdToAdminUser  AdminUser?           @relation("Tenant_ownerIdToAdminUser", fields: [ownerId], references: [id])
+  WebhookEvent                         WebhookEvent[]
+  Wishlist                             Wishlist[]
+
+  @@index([businessEmail])
+  @@index([ownerId])
+  @@index([slug])
+}
+
+model WebhookEvent {
+  id           Int      @id @default(autoincrement())
+  tenantId     Int
+  eventType    String
+  payload      Json
+  status       String   @default("PENDING")
+  errorMessage String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+  Tenant       Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([status])
+  @@index([tenantId])
+}
+
+model Wishlist {
+  id               Int             @id @default(autoincrement())
+  customerId       Int
+  productId        Int
+  createdAt        DateTime        @default(now())
+  tenantId         Int
+  productVariantId Int?
+  Customer         Customer        @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  Product          Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  ProductVariant   ProductVariant? @relation(fields: [productVariantId], references: [id])
+  Tenant           Tenant          @relation(fields: [tenantId], references: [id])
+
+  @@unique([customerId, productId, productVariantId])
+  @@index([customerId])
+  @@index([productId])
+  @@index([productVariantId])
+  @@index([tenantId])
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  OWNER
+  SALES
+  ACCOUNTANT
+  INVENTORY_MANAGER
+  STAFF
+}
+
+enum CustomerRole {
+  CUSTOMER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum DeliveryStatus {
+  PENDING
+  DISPATCHED
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  FAILED
+}
+
+enum DiscountScope {
+  PRODUCT
+  CATEGORY
+  COLLECTION
+  STORE
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+}
+
+enum OrderStatus {
+  ORDER_PLACED
+  DISPATCHED
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+  RETURN_REQUESTED
+  RETURN_APPROVED
+  RETURNED
+  REFUND_INITIATED
+  REFUND_COMPLETED
+  PENDING
+  CONFIRMED
+  PROCESSING
+  PACKED
+  SHIPPED
+  REFUNDED
+  PENDING_PAYMENT
+  PAYMENT_CONFIRMED
+  ORDER_CONFIRMED
+  JEWELLERY_PREPARING
+  QUALITY_CHECK
+}
+
+enum PaymentStatus {
+  PENDING
+  AUTHORIZED
+  CAPTURED
+  COMPLETED
+  SUCCESS
+  PAID
+  FAILED
+  CANCELLED
+  REFUNDED
+  REFUND_PENDING
+}
+
+enum PricingMode {
+  DETAILED
+  MANUAL_BASE
+  MANUAL_FINAL
+}

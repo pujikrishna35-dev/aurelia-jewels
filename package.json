@@ -1,0 +1,12 @@
+{
+  "name": "aurelia-jewels",
+  "version": "1.0.0",
+  "description": "Aurelia Jewels - Premium Luxury E-Commerce",
+  "main": "Jewllery/app.js",
+  "scripts": {
+    "dev": "serve -l 8080 Jewllery"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}

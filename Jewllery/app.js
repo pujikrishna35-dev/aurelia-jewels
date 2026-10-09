@@ -3,300 +3,10 @@
    ========================================================================== */
 
 // --- 1. PREMIUM PRODUCTS DATABASE ---
-const PRODUCTS = [
-  {
-    id: 1,
-    name: "Aura Solitaire Diamond Ring",
-    category: "rings",
-    metal: "gold",
-    stone: "diamond",
-    price: 4850,
-    originalPrice: 5500,
-    purity: "18K Gold",
-    weight: "4.2g",
-    rating: 4.9,
-    reviewsCount: 18,
-    badge: "Best Seller",
-    images: [
-      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "An iconic symbol of eternal devotion. This solitaire engagement ring features a stunning brilliant-cut center diamond, meticulously secured in a six-prong 18k yellow gold setting. Its elevated profile allows maximum light reflection, accentuating the gem's natural brilliance.",
-    specifications: {
-      "Stone Type": "Natural Round Brilliant Diamond",
-      "Total Carat Weight": "1.25 ct",
-      "Clarity": "VVS1",
-      "Color Grade": "F",
-      "Certificate": "GIA Certified",
-      "Band Width": "2.0 mm"
-    },
-    reviews: [
-      { name: "Victoria H.", date: "July 12, 2026", rating: 5, content: "Absolutely breathtaking. The stone is incredibly clear and sparkles beautifully under any lighting. The gold band is delicate but sturdy." },
-      { name: "Robert S.", date: "June 28, 2026", rating: 5, content: "Proposed last week and she is in love with it. Aurelia's packaging was also top notch. Exquisite craftsmanship." }
-    ]
-  },
-  {
-    id: 2,
-    name: "Elysian Diamond Eternity Band",
-    category: "rings",
-    metal: "platinum",
-    stone: "diamond",
-    price: 3200,
-    originalPrice: 0,
-    purity: "950 Platinum",
-    weight: "5.8g",
-    rating: 4.8,
-    reviewsCount: 24,
-    badge: "New Arrival",
-    images: [
-      "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "Celebrate endless love with the Elysian Eternity Band. Crafted in durable 950 platinum, this ring is set with a continuous circle of matching round brilliant diamonds. Each stone is individually hand-placed in a secure channel-pave hybrid setting for seamless luxury.",
-    specifications: {
-      "Stone Type": "Natural Diamonds",
-      "Total Carat Weight": "0.85 ct",
-      "Clarity": "VS1",
-      "Color Grade": "G",
-      "Certificate": "IGL Certified",
-      "Band Width": "3.5 mm"
-    },
-    reviews: [
-      { name: "Helena G.", date: "May 14, 2026", rating: 5, content: "Perfect stackable ring. It coordinates beautifully with my engagement solitaire. Smooth edges, very comfortable." }
-    ]
-  },
-  {
-    id: 3,
-    name: "Duchess Emerald Choker",
-    category: "necklaces",
-    metal: "gold",
-    stone: "emerald",
-    price: 12500,
-    originalPrice: 14500,
-    purity: "22K Gold",
-    weight: "24.5g",
-    rating: 5.0,
-    reviewsCount: 6,
-    badge: "Exclusive",
-    images: [
-      "emerald_choker.png",
-      "emerald_choker_detail.png"
-    ],
-    description: "An heirloom-worthy piece of unparalleled grandeur. The Duchess Choker features hand-selected Colombian emeralds in deep forest green, arranged with clusters of micro-diamonds. Suspended gracefully on a heavy 22k yellow gold hand-linked chain.",
-    specifications: {
-      "Stone Type": "AAA Colombian Emeralds & Diamonds",
-      "Total Carat Weight": "4.50 ct Emerald / 1.10 ct Diamond",
-      "Chain Length": "14 - 16 inches Adjustable",
-      "Clarity": "Eye-Clean Gemstones",
-      "Clarity (Diamond)": "VVS2",
-      "Color Grade (Diamond)": "E"
-    },
-    reviews: [
-      { name: "Charlotte D.", date: "April 02, 2026", rating: 5, content: "Wore this to our anniversary gala. A true masterpiece, I received compliments all evening. The green is mesmerizing." }
-    ]
-  },
-  {
-    id: 4,
-    name: "Celestial Sapphire Studs",
-    category: "earrings",
-    metal: "rosegold",
-    stone: "sapphire",
-    price: 2900,
-    originalPrice: 0,
-    purity: "18K Rose Gold",
-    weight: "3.6g",
-    rating: 4.7,
-    reviewsCount: 14,
-    badge: "Best Seller",
-    images: [
-      "sapphire_studs.png",
-      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "Inspired by the celestial midnight sky, these earrings highlight oval-cut deep blue sapphires framed by a warm halo of 18k rose gold and dainty pavé diamonds. Their classic silhouette makes them perfect for both day and evening wear.",
-    specifications: {
-      "Stone Type": "Royal Blue Natural Sapphires",
-      "Total Carat Weight": "1.80 ct",
-      "Setting Type": "Halo Prongs",
-      "Backing Type": "La Pousette Secure Posts",
-      "Accent Stones": "Round Brilliant Diamonds"
-    },
-    reviews: [
-      { name: "Diana M.", date: "June 05, 2026", rating: 4, content: "Beautiful color contrast between the blue sapphires and rose gold. The backing feels very secure, which is important for studs." }
-    ]
-  },
-  {
-    id: 5,
-    name: "Isabella Rose Gold Bangle",
-    category: "bracelets",
-    metal: "rosegold",
-    stone: "",
-    price: 1800,
-    originalPrice: 2200,
-    purity: "18K Rose Gold",
-    weight: "14.2g",
-    rating: 4.6,
-    reviewsCount: 9,
-    badge: "Sale",
-    images: [
-      "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "A sleek, contemporary minimalist cuff crafted in polished solid 18k rose gold. Elegant on its own, yet perfectly proportioned for layering. Features a hidden push-button clasp safety lock.",
-    specifications: {
-      "Material": "Solid 18K Rose Gold",
-      "Finish": "High Polish Mirror",
-      "Clasp": "Integrated Box Clasp with Safety Key",
-      "Sizing": "Medium (fits wrists 6.0 to 6.5 inches)"
-    },
-    reviews: [
-      { name: "Sarah L.", date: "March 18, 2026", rating: 5, content: "Such a chic, timeless bracelet. It holds up well for everyday wear. No scratches yet." }
-    ]
-  },
-  {
-    id: 6,
-    name: "Verdant Aura Emerald Ring",
-    category: "rings",
-    metal: "gold",
-    stone: "emerald",
-    price: 5400,
-    originalPrice: 0,
-    purity: "18K Gold",
-    weight: "5.1g",
-    rating: 4.9,
-    reviewsCount: 11,
-    badge: "Limited Edition",
-    images: [
-      "https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "An architectural wonder of geometric design. A vibrant emerald-cut green emerald center stone is flanked by trapezoid step-cut side diamonds, structured beautifully in heavy 18k yellow gold prongs.",
-    specifications: {
-      "Center Stone": "Natural Emerald Cut Emerald",
-      "Side Stones": "Trapezoid Diamonds",
-      "Center Carat": "1.50 ct",
-      "Certification": "GRS Certified",
-      "Origin": "Zambia"
-    },
-    reviews: [
-      { name: "Amelia V.", date: "May 29, 2026", rating: 5, content: "The green is incredibly vivid. Aurelia customer service helped me customize the ring size, and the shipping was fast." }
-    ]
-  },
-  {
-    id: 7,
-    name: "Lustrous Pearl Drop Earrings",
-    category: "earrings",
-    metal: "silver",
-    stone: "pearl",
-    price: 950,
-    originalPrice: 1200,
-    purity: "925 Fine Silver",
-    weight: "6.8g",
-    rating: 4.8,
-    reviewsCount: 15,
-    badge: "Sale",
-    images: [
-      "pearl_drop_earrings.png",
-      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "Classic drops representing pure, unvarnished elegance. Pair of South Sea white cultured pearls, possessing excellent luster, dangling from sterling silver chains accented by small round diamonds.",
-    specifications: {
-      "Pearl Type": "South Sea Cultured Pearl",
-      "Pearl Size": "10 - 11 mm",
-      "Luster Grade": "Very High (AAA)",
-      "Metal": "Rhodium-Plated 925 Sterling Silver",
-      "Accent": "Round Cut Diamonds 0.15tcw"
-    },
-    reviews: [
-      { name: "Sophia K.", date: "June 17, 2026", rating: 5, content: "Graceful and elegant. They catch the light beautifully when I move. Very comfortable to wear all day long." }
-    ]
-  },
-  {
-    id: 8,
-    name: "Imperial Diamond Bridal Suite",
-    category: "bridal",
-    metal: "platinum",
-    stone: "diamond",
-    price: 24000,
-    originalPrice: 28500,
-    purity: "950 Platinum",
-    weight: "35.2g",
-    rating: 5.0,
-    reviewsCount: 3,
-    badge: "Exclusive Suite",
-    images: [
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "The crown jewel of our bridal collections. This unmatched suite includes a grand marquise-cut diamond necklace, matching teardrop earrings, and a matching double-halo diamond bracelet. Handcrafted over 120 hours.",
-    specifications: {
-      "Suite Components": "Necklace, Earrings Pair, Bracelet",
-      "Total Gem Weight": "12.45 carats",
-      "Metal Composition": "Solid 950 Platinum",
-      "Diamond Quality": "VVS2 Clarity, E-F Color",
-      "Sizing Adjustments": "Complimentary bespoke tailoring included"
-    },
-    reviews: [
-      { name: "Genevieve W.", date: "May 01, 2026", rating: 5, content: "The absolute highlight of my wedding look. It truly made me feel like royalty. The sparkle is blindlingly beautiful." }
-    ]
-  },
-  {
-    id: 9,
-    name: "Gilded Heritage Coin Necklace",
-    category: "necklaces",
-    metal: "gold",
-    stone: "",
-    price: 1250,
-    originalPrice: 1500,
-    purity: "18K Gold",
-    weight: "8.5g",
-    rating: 4.8,
-    reviewsCount: 14,
-    badge: "Best Seller",
-    images: [
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=600"
-    ],
-    description: "A vintage-inspired layering piece. This necklace features a hand-struck coin medallion suspended on double-layered link and satellite chains, crafted in solid 18k yellow gold.",
-    specifications: {
-      "Metal": "Solid 18K Yellow Gold",
-      "Chain Length": "16 - 18 inches Adjustable",
-      "Pendant Diameter": "15 mm",
-      "Finish": "Antique Gold Etched"
-    },
-    reviews: [
-      { name: "Marcella A.", date: "May 20, 2026", rating: 5, content: "Perfect for everyday layering. The coin has a beautiful rustic finish." }
-    ]
-  },
-  {
-    id: 10,
-    name: "Lustrous Pearl Choker",
-    category: "necklaces",
-    metal: "gold",
-    stone: "pearl",
-    price: 3600,
-    originalPrice: 4200,
-    purity: "18K Gold",
-    weight: "18.2g",
-    rating: 4.9,
-    reviewsCount: 8,
-    badge: "Exclusive",
-    images: [
-      "pearl_necklace.png",
-      "pearl_necklace_back.png"
-    ],
-    description: "An elegant, timeless classic. This choker features a strand of perfectly matched, high-luster South Sea cultured pearls, completed with an exquisite flower-shaped white-gold clasp adorned with tiny diamonds.",
-    specifications: {
-      "Pearl Type": "South Sea Cultured Pearls",
-      "Pearl Size": "8.5 - 9.0 mm",
-      "Luster Grade": "Excellent (AAA)",
-      "Clasp Material": "18K White Gold",
-      "Necklace Length": "16 inches"
-    },
-    reviews: [
-      { name: "Katherine P.", date: "April 12, 2026", rating: 5, content: "Simply stunning. The luster is breathtaking, and the clasp is a work of art in itself." }
-    ]
-  }
-];
+let PRODUCTS = [];
+let CATEGORIES = [];
+let COLLECTIONS = [];
+let METAL_PRICES = [];
 
 // --- 2. BLOG DATABASE ---
 const BLOG_POSTS = [
@@ -362,9 +72,23 @@ class StateManager {
     this.cart = JSON.parse(localStorage.getItem("aurelia_cart")) || [];
     this.wishlist = JSON.parse(localStorage.getItem("aurelia_wishlist")) || [];
     this.currentUser = JSON.parse(localStorage.getItem("aurelia_user")) || null;
+    if (this.currentUser) {
+      if (!this.currentUser.name && this.currentUser.fullName) {
+        this.currentUser.name = this.currentUser.fullName;
+      }
+      if (!this.currentUser.cards) {
+        this.currentUser.cards = [];
+      }
+      if (!this.currentUser.notifications) {
+        this.currentUser.notifications = { email: true, sms: false, collections: true };
+      }
+      if (!this.currentUser.address) {
+        this.currentUser.address = "";
+      }
+    }
     this.orders = JSON.parse(localStorage.getItem("aurelia_orders")) || [
-      { id: "AJ-98421", date: "June 12, 2026", total: 4850, status: "delivered", items: ["Aura Solitaire Diamond Ring"] },
-      { id: "AJ-98005", date: "May 20, 2026", total: 1800, status: "shipped", items: ["Isabella Rose Gold Bangle"] }
+      { id: "AJ-98421", date: "June 12, 2026", total: 4850, status: "delivered", paymentStatus: "PAID", items: ["Aura Solitaire Diamond Ring"] },
+      { id: "AJ-98005", date: "May 20, 2026", total: 1800, status: "shipped", paymentStatus: "PAID", items: ["Isabella Rose Gold Bangle"] }
     ];
     this.recentlyViewed = JSON.parse(localStorage.getItem("aurelia_recently")) || [];
   }
@@ -442,18 +166,67 @@ class StateManager {
     return this.wishlist.includes(productId);
   }
 
-  // Auth Operations
-  login(email, password) {
-    this.currentUser = {
-      name: email.split("@")[0].charAt(0).toUpperCase() + email.split("@")[0].slice(1),
-      email: email,
-      address: "1024 Ocean Boulevard, Santa Monica, CA 90401",
-      cards: ["•••• •••• •••• 4892", "•••• •••• •••• 1025"],
-      notifications: { email: true, sms: false, collections: true }
-    };
-    localStorage.setItem("aurelia_user", JSON.stringify(this.currentUser));
-    showToast(`Welcome back, ${this.currentUser.name}!`, "success");
-    window.location.hash = "#dashboard";
+  async login(email, password) {
+    const res = await apiService.loginCustomer(email, password);
+    if (res.success) {
+      this.currentUser = res.data;
+      this.currentUser.name = this.currentUser.fullName;
+      this.currentUser.cards = [];
+      this.currentUser.notifications = { email: true, sms: false, collections: true };
+      this.currentUser.address = "";
+      localStorage.setItem("aurelia_user", JSON.stringify(this.currentUser));
+      showToast(`Welcome back, ${this.currentUser.fullName}!`, "success");
+      
+      // Sync Cart from backend on login
+      try {
+        const backendCart = await apiService.getCart(this.currentUser.id);
+        if (backendCart && backendCart.items) {
+          // Merge or overwrite local guest cart with backend cart
+          this.cart = backendCart.items.map(item => {
+            const prod = PRODUCTS.find(p => p.id === item.productId);
+            return {
+              product: prod || { id: item.productId, name: item.productName, price: Number(item.totalPrice) },
+              quantity: item.quantity,
+              metal: item.metalType || 'gold'
+            };
+          });
+          this.saveCart();
+          this.updateBadges();
+        }
+      } catch (err) {
+        console.error("Failed to sync cart on login:", err);
+      }
+
+      // Sync Orders on login
+      await this.syncCustomerOrders();
+
+      window.location.hash = "#dashboard";
+    } else {
+      showToast(res.message || "Invalid email or password", "error");
+    }
+  }
+
+  async syncCustomerOrders() {
+    if (this.currentUser) {
+      try {
+        const backendOrders = await apiService.getCustomerOrders(this.currentUser.id);
+        if (backendOrders) {
+          this.orders = backendOrders.map(o => ({
+            id: o.orderNumber || `ORD-${o.id}`,
+            realId: o.id,
+            date: new Date(o.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+            total: Number(o.grandTotal),
+            status: o.status.toLowerCase(),
+            paymentStatus: o.paymentStatus,
+            items: o.OrderItem ? o.OrderItem.map(oi => oi.productName) : [],
+            address: o.notes || ""
+          }));
+          localStorage.setItem("aurelia_orders", JSON.stringify(this.orders));
+        }
+      } catch (err) {
+        console.error("Failed to sync customer orders:", err);
+      }
+    }
   }
 
   logout() {
@@ -463,36 +236,49 @@ class StateManager {
     window.location.hash = "#home";
   }
 
-  register(name, email, password) {
-    this.currentUser = {
-      name: name,
+  async register(name, email, password) {
+    const res = await apiService.registerCustomer({
+      fullName: name,
       email: email,
-      address: "",
-      cards: [],
-      notifications: { email: true, sms: true, collections: true }
-    };
-    localStorage.setItem("aurelia_user", JSON.stringify(this.currentUser));
-    showToast("Registration successful! Welcome to Aurelia.", "success");
-    window.location.hash = "#dashboard";
+      password: password
+    });
+    if (res.success) {
+      this.currentUser = res.data;
+      this.currentUser.name = this.currentUser.fullName;
+      this.currentUser.cards = [];
+      this.currentUser.notifications = { email: true, sms: false, collections: true };
+      this.currentUser.address = "";
+      localStorage.setItem("aurelia_user", JSON.stringify(this.currentUser));
+      showToast("Registration successful! Welcome to Aurelia.", "success");
+      window.location.hash = "#dashboard";
+    } else {
+      showToast(res.message || "Registration failed", "error");
+    }
   }
 
   // Order Placement
-  placeOrder(addressDetails, paymentMethod) {
-    const orderId = `AJ-${Math.floor(10000 + Math.random() * 90000)}`;
-    const itemsList = this.cart.map(item => item.product.name);
-    const newOrder = {
-      id: orderId,
-      date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
-      total: this.getCartTotal() + 35, // Including simulated delivery fee
-      status: "processing",
-      items: itemsList,
-      address: addressDetails,
-      payment: paymentMethod
+  async placeOrder(addressDetails, paymentMethod) {
+    const customerId = this.currentUser ? this.currentUser.id : 1;
+    
+    const items = this.cart.map(item => ({
+      productId: item.product.id,
+      quantity: item.quantity
+    }));
+
+    const orderData = {
+      customerId,
+      items,
+      shippingAmount: 35,
+      notes: `Payment method: ${paymentMethod}. Delivery Address: ${addressDetails}`
     };
-    this.orders.unshift(newOrder);
-    localStorage.setItem("aurelia_orders", JSON.stringify(this.orders));
-    this.clearCart();
-    return orderId;
+
+    const res = await apiService.placeOrder(orderData);
+    if (res.success) {
+      return res.data;
+    } else {
+      showToast(res.message || "Order creation failed", "error");
+      throw new Error(res.message || "Order creation failed");
+    }
   }
 
   // Recently viewed list
@@ -709,27 +495,27 @@ function renderHome() {
       <div class="instagram-grid">
         <div class="instagram-item">
           <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=400" alt="Instagram Showcase 1">
-          <div class="instagram-overlay"><i data-lucide="instagram"></i></div>
+          <div class="instagram-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></div>
         </div>
         <div class="instagram-item">
           <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=400" alt="Instagram Showcase 2">
-          <div class="instagram-overlay"><i data-lucide="instagram"></i></div>
+          <div class="instagram-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></div>
         </div>
         <div class="instagram-item">
           <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=400" alt="Instagram Showcase 3">
-          <div class="instagram-overlay"><i data-lucide="instagram"></i></div>
+          <div class="instagram-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></div>
         </div>
         <div class="instagram-item">
           <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80&w=400" alt="Instagram Showcase 4">
-          <div class="instagram-overlay"><i data-lucide="instagram"></i></div>
+          <div class="instagram-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></div>
         </div>
         <div class="instagram-item">
           <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=400" alt="Instagram Showcase 5">
-          <div class="instagram-overlay"><i data-lucide="instagram"></i></div>
+          <div class="instagram-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></div>
         </div>
         <div class="instagram-item">
           <img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=400" alt="Instagram Showcase 6">
-          <div class="instagram-overlay"><i data-lucide="instagram"></i></div>
+          <div class="instagram-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></div>
         </div>
       </div>
     </section>
@@ -1658,22 +1444,11 @@ function renderCheckout() {
             <!-- Payment Information -->
             <div class="checkout-section">
               <h3 class="checkout-section-title">Secure Payment</h3>
-              <div class="form-grid">
-                <div class="input-group full-width">
-                  <label for="co-card-name">Name on Card</label>
-                  <input type="text" id="co-card-name" required>
-                </div>
-                <div class="input-group full-width">
-                  <label for="co-card-num">Credit Card Number</label>
-                  <input type="text" id="co-card-num" placeholder="•••• •••• •••• ••••" required>
-                </div>
-                <div class="input-group">
-                  <label for="co-card-exp">Expiration Date</label>
-                  <input type="text" id="co-card-exp" placeholder="MM / YY" required>
-                </div>
-                <div class="input-group">
-                  <label for="co-card-cvv">Security Code (CVV)</label>
-                  <input type="password" id="co-card-cvv" placeholder="•••" required>
+              <div class="payment-method-card" style="border: 1px solid var(--color-gold); padding: 1.5rem; border-radius: 4px; display: flex; align-items: center; gap: 1rem; background: rgba(212, 175, 55, 0.05);">
+                <input type="radio" id="pay-razorpay" name="payment-option" checked style="accent-color: var(--color-gold); width: 18px; height: 18px; cursor: pointer;">
+                <div>
+                  <span style="font-weight: 600; color: var(--color-gold); display: block; margin-bottom: 0.25rem; font-size: 1.1rem;">Razorpay Secure Checkout</span>
+                  <p style="font-size: 0.9rem; color: var(--color-muted); margin: 0; line-height: 1.4;">Pay securely using Credit/Debit Cards, UPI, Netbanking, or Wallets via Razorpay.</p>
                 </div>
               </div>
             </div>
@@ -1753,14 +1528,70 @@ function renderCheckout() {
   });
 
   // Checkout submission
-  document.getElementById("checkout-main-form").addEventListener("submit", (e) => {
+  document.getElementById("checkout-main-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const address = document.getElementById("co-address").value;
-    const cardNum = document.getElementById("co-card-num").value;
-    const orderId = state.placeOrder(address, `Card ending in ${cardNum.slice(-4)}`);
     
-    // Display Order Confirmation View
-    renderOrderConfirmation(orderId, address);
+    try {
+      showToast("Creating your secure order...", "info");
+      const orderData = await state.placeOrder(address, 'Razorpay');
+
+      const options = {
+        key: orderData.razorpayKeyId || 'rzp_test_TRwwZsAG2Trlxn',
+        amount: orderData.amount,
+        currency: 'INR',
+        name: 'Aurelia Jewels',
+        description: `Vault Order ${orderData.orderNumber}`,
+        order_id: orderData.razorpayOrderId,
+        handler: async function (response) {
+          showToast("Verifying payment...", "info");
+          const verifyRes = await apiService.verifyPayment({
+            orderId: orderData.id,
+            razorpayOrderId: response.razorpay_order_id || orderData.razorpayOrderId,
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpaySignature: response.razorpay_signature || 'mock_signature'
+          });
+
+          if (verifyRes.success) {
+            showToast("Payment successful! Preparing vault delivery.", "success");
+            
+            // Record local order history for user experience
+            const newOrder = {
+              id: orderData.orderNumber || `ORD-${orderData.id}`,
+              date: new Date(orderData.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+              total: Number(orderData.grandTotal),
+              status: 'order_placed',
+              items: orderData.OrderItem ? orderData.OrderItem.map(oi => oi.productName) : state.cart.map(item => item.product.name),
+              address: address,
+              payment: 'Razorpay'
+            };
+            state.orders.unshift(newOrder);
+            localStorage.setItem("aurelia_orders", JSON.stringify(state.orders));
+            state.clearCart();
+
+            renderOrderConfirmation(orderData.orderNumber, address);
+          } else {
+            showToast(verifyRes.message || "Payment verification failed", "error");
+          }
+        },
+        prefill: {
+          name: state.currentUser ? state.currentUser.fullName : "Guest User",
+          email: state.currentUser ? state.currentUser.email : "guest@example.com",
+          contact: document.getElementById("co-phone").value || ""
+        },
+        theme: {
+          color: "#d4af37" // gold
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.on('payment.failed', function (response) {
+        showToast("Payment failed: " + response.error.description, "error");
+      });
+      rzp.open();
+    } catch (err) {
+      console.error('Checkout error:', err);
+    }
   });
 }
 
@@ -1793,11 +1624,14 @@ function renderOrderConfirmation(orderId, address) {
 }
 
 // View 9: USER ACCOUNT DASHBOARD
-function renderDashboard() {
+async function renderDashboard() {
   if (!state.currentUser) {
     window.location.hash = "#login";
     return;
   }
+
+  // Sync orders from backend first
+  await state.syncCustomerOrders();
 
   appContainer.innerHTML = `
     <div class="container">
@@ -1868,16 +1702,26 @@ function renderDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  ${state.orders.map(o => `
+                  ${state.orders.map(o => {
+                    const isPaid = o.paymentStatus === 'PAID' || o.paymentStatus === 'captured' || o.paymentStatus === 'COMPLETED' || o.status === 'order_placed';
+                    const isRefunded = o.status === 'refunded' || o.status === 'refund_completed' || o.status === 'refund_initiated' || o.paymentStatus === 'REFUNDED';
+                    const showRefund = isPaid && !isRefunded;
+                    return `
                     <tr>
                       <td><strong>${o.id}</strong></td>
                       <td>${o.date}</td>
                       <td>${o.items.join(', ')}</td>
                       <td>$${o.total.toLocaleString()}</td>
                       <td><span class="status-badge ${o.status}">${o.status}</span></td>
-                      <td><a href="#order-tracking?id=${o.id}" class="text-link" style="font-size:0.8rem;">Track</a></td>
+                      <td>
+                        <a href="#order-tracking?id=${o.id}" class="text-link" style="font-size:0.8rem; margin-right:8px;">Track</a>
+                        ${showRefund ? `
+                          <button class="btn-refund-trigger text-link" data-id="${o.id}" data-real-id="${o.realId || ''}" style="background:none; border:none; font-size:0.8rem; color:var(--color-rose-gold); cursor:pointer; padding:0;">Refund</button>
+                        ` : ''}
+                      </td>
                     </tr>
-                  `).join('')}
+                    `;
+                  }).join('')}
                 </tbody>
               </table>
             `}
@@ -1967,12 +1811,22 @@ function renderDashboard() {
   });
 
   // Update profile handler
-  document.getElementById("db-profile-form").addEventListener("submit", (e) => {
+  document.getElementById("db-profile-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    state.currentUser.name = document.getElementById("db-name").value;
-    localStorage.setItem("aurelia_user", JSON.stringify(state.currentUser));
-    showToast("Profile details updated successfully.", "success");
-    renderDashboard();
+    const updatedName = document.getElementById("db-name").value;
+    const res = await apiService.updateCustomer(state.currentUser.id, {
+      fullName: updatedName
+    });
+
+    if (res.success) {
+      state.currentUser = res.data;
+      state.currentUser.name = state.currentUser.fullName;
+      localStorage.setItem("aurelia_user", JSON.stringify(state.currentUser));
+      showToast("Profile details updated successfully.", "success");
+      renderDashboard();
+    } else {
+      showToast(res.message || "Failed to update profile details.", "error");
+    }
   });
 
   // Preferences save
@@ -1981,6 +1835,52 @@ function renderDashboard() {
     state.currentUser.notifications.sms = document.getElementById("pref-sms").checked;
     localStorage.setItem("aurelia_user", JSON.stringify(state.currentUser));
     showToast("Communication preferences saved.", "success");
+  });
+
+  // Refund buttons event listeners
+  document.querySelectorAll(".btn-refund-trigger").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const orderNo = btn.getAttribute("data-id");
+      const realId = btn.getAttribute("data-real-id");
+      
+      if (!realId) {
+        // Fallback simulation for mock local orders
+        const confirmRefund = confirm(`Are you sure you want to request a refund for local mock order ${orderNo}?`);
+        if (confirmRefund) {
+          showToast("Refunding mock order...", "info");
+          setTimeout(() => {
+            const foundIdx = state.orders.findIndex(o => o.id === orderNo);
+            if (foundIdx > -1) {
+              state.orders[foundIdx].status = 'refunded';
+              state.orders[foundIdx].paymentStatus = 'REFUNDED';
+              localStorage.setItem("aurelia_orders", JSON.stringify(state.orders));
+              showToast("Mock refund processed successfully.", "success");
+              renderDashboard();
+            }
+          }, 1000);
+        }
+        return;
+      }
+
+      // Dialog box for real orders
+      const reason = prompt(`Are you sure you want to request a refund for Order ${orderNo}? Please specify a reason:`);
+      if (reason === null) return; // User cancelled prompt
+      
+      try {
+        showToast("Processing secure refund...", "info");
+        const res = await apiService.refundOrder(realId, reason);
+        if (res.success) {
+          showToast("Refund processed successfully!", "success");
+          // Re-render dashboard
+          renderDashboard();
+        } else {
+          showToast(res.message || "Failed to process refund.", "error");
+        }
+      } catch (err) {
+        console.error("Refund request failed:", err);
+        showToast("An error occurred while processing refund.", "error");
+      }
+    });
   });
 }
 
@@ -2019,11 +1919,11 @@ function renderLogin() {
   `;
 
   // Attach submit handler
-  document.getElementById("login-form").addEventListener("submit", (e) => {
+  document.getElementById("login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
-    state.login(email, password);
+    await state.login(email, password);
   });
 }
 
@@ -2063,12 +1963,12 @@ function renderRegister() {
   `;
 
   // Submit binder
-  document.getElementById("register-form").addEventListener("submit", (e) => {
+  document.getElementById("register-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = document.getElementById("reg-name").value;
     const email = document.getElementById("reg-email").value;
     const password = document.getElementById("reg-password").value;
-    state.register(name, email, password);
+    await state.register(name, email, password);
   });
 }
 
@@ -2658,7 +2558,65 @@ function openQuickView(productId) {
 
 
 // --- 8. INITIALIZATIONS & BINDINGS ON LOAD ---
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  
+  // Load data from our backend APIs
+  try {
+    const [fetchedProducts, fetchedCategories, fetchedCollections, fetchedMetalPrices] = await Promise.all([
+      apiService.getProducts(),
+      apiService.getCategories(),
+      apiService.getCollections(),
+      apiService.getMetalPrices()
+    ]);
+
+    // Map the database schemas to what frontend expects
+    PRODUCTS = fetchedProducts.map(p => {
+      let purity = p.ProductMetal?.[0]?.purity || p.purity || '';
+      if (!purity) {
+        if (p.metalType === 'Gold') purity = '22K Gold';
+        else if (p.metalType === 'Silver') purity = '925 Silver';
+        else purity = p.metalType || '18K Gold';
+      }
+      
+      const originalPrice = Number(p.originalPrice || 0);
+      const calculatedPrice = Number(p.totalAmount || p.amountWithoutGst || p.basePrice || 0);
+
+      return {
+        id: p.id,
+        name: p.name,
+        category: p.Category?.slug || p.category || 'rings',
+        metal: p.metalType?.toLowerCase() || p.metal || 'gold',
+        stone: p.stone || '',
+        price: calculatedPrice || originalPrice || 0,
+        originalPrice: originalPrice > calculatedPrice ? originalPrice : 0,
+        purity: purity,
+        weight: p.grossWeight ? `${p.grossWeight}g` : (p.weight || 'N/A'),
+        rating: Number(p.rating || 4.8),
+        reviewsCount: p.Review?.length || 0,
+        badge: p.isBestSeller ? 'Best Seller' : (p.isNew ? 'New Arrival' : ''),
+        images: p.ProductImage?.length > 0 
+          ? p.ProductImage.map(img => img.imageUrl) 
+          : [p.imageUrl || 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600'],
+        description: p.description || '',
+        specifications: {
+          "Metal Type": p.metalType || 'Gold',
+          "Purity": purity,
+          "Gross Weight": p.grossWeight ? `${p.grossWeight}g` : 'N/A',
+          "Net Weight": p.netWeight ? `${p.netWeight}g` : 'N/A',
+          "Stone Amount": p.stoneAmount ? `Rs ${p.stoneAmount}` : '0',
+          "Wastage": p.wastage ? `${p.wastage}%` : '0%',
+          "Making Charge": p.makingCharge ? `Rs ${p.makingCharge}/g` : '0'
+        },
+        reviews: p.Review || []
+      };
+    });
+
+    CATEGORIES = fetchedCategories;
+    COLLECTIONS = fetchedCollections;
+    METAL_PRICES = fetchedMetalPrices;
+  } catch (err) {
+    console.error("Failed to load backend startup data:", err);
+  }
   
   // Dynamic Router binds
   window.addEventListener("hashchange", router);
